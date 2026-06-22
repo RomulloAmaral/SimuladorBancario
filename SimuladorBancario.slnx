@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="SimuladorBancario.API/SimuladorBancario.API.csproj" />
+  <Project Path="SimuladorBancario.Application/SimuladorBancario.Application.csproj" />
+  <Project Path="SimuladorBancario.Domain/SimuladorBancario.Domain.csproj" />
+  <Project Path="SimuladorBancario.Infrastructure/SimuladorBancario.Infrastructure.csproj" />
+  <Project Path="SimuladorBancario.Tests/SimuladorBancario.Tests.csproj" />
+</Solution>
