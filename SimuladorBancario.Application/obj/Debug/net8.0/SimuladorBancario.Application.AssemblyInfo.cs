@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimuladorBancario.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80d32ccaec1549e74feb03b2071ffddae5f80f57")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+11a1ada5044765ae2bc99c2074834b03999f407a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimuladorBancario.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimuladorBancario.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
