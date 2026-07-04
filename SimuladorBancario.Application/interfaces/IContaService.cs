@@ -1,3 +1,5 @@
+using SimuladorBancario.Domain.Entities;
+
 namespace SimuladorBancario.Application.Interfaces;
 
 public interface IContaService

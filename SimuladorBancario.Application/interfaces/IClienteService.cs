@@ -1,7 +1,9 @@
+using SimuladorBancario.Domain.Entities;
+
 namespace SimuladorBancario.Application.Interfaces;
 
-public interface IClienteRepository
+public interface IClienteService
 {
-    Task<Guid> ObterClienteIdPorCpfCnpjAsync(string cpfCnpj);
-    Task<Cliente> ObterClientePorIdAsync(Guid id);
+    Task<Guid> CriarClienteAsync(string nome, string cpfCnpj);
+    Task<Cliente?> ObterPorIdAsync(Guid id);
 }

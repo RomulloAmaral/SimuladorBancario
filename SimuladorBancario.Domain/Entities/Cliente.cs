@@ -8,7 +8,11 @@ public class Cliente
     public DateTime DataCadastro { get; private set; }
 
     // EF Core precisa de construtor sem parâmetros (privado está ok)
-    private Cliente() { }
+    private Cliente() 
+{ 
+    Nome = string.Empty;
+    CpfCnpj = string.Empty;
+}
 
     public Cliente(string nome, string cpfCnpj)
     {

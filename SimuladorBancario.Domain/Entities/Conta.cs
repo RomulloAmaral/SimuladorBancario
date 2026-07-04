@@ -1,4 +1,4 @@
-
+using SimuladorBancario.Domain.Enums;
 
 namespace SimuladorBancario.Domain.Entities;
 
