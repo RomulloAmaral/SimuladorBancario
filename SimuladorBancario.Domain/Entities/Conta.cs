@@ -4,8 +4,8 @@ namespace SimuladorBancario.Domain.Entities;
 
 public class Conta
 {
-    public Guid ID { get; private set; }
-    public Guid ClientID { get; private set; }
+    public Guid Id { get; private set; }
+    public Guid ClienteId { get; private set; }
     public decimal Saldo { get; private set; }
     public DateTime DataHora { get; private set; }
 
@@ -16,10 +16,10 @@ public class Conta
         Movimentacoes = new List<Movimentacao>();
     }
 
-    public Conta(Guid clientID)
+    public Conta(Guid clienteId)
     {
-        ID = Guid.NewGuid();
-        ClientID = clientID;
+        Id = Guid.NewGuid();
+        ClienteId = clienteId;
         Saldo = 0;
         DataHora = DateTime.Now;
         Movimentacoes = new List<Movimentacao>();
@@ -31,7 +31,7 @@ public class Conta
             throw new ArgumentException("O valor do depósito deve ser maior que zero.");
 
         Saldo += valor;
-        Movimentacoes.Add(new Movimentacao(ID, valor, TipoMovimentacao.Deposito));
+       
     }
 
     public void Sacar(decimal valor)
@@ -45,6 +45,8 @@ public class Conta
         }
 
         Saldo -= valor;
-        Movimentacoes.Add(new Movimentacao(ID, valor, TipoMovimentacao.Saque));
+        Movimentacoes.Add(new Movimentacao(Id, valor, TipoMovimentacao.Saque));
     }
+    public void AdicionarMovimentacao(Movimentacao movimentacao) =>
+        Movimentacoes.Add(movimentacao);
 }

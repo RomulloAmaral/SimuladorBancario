@@ -4,18 +4,18 @@ namespace SimuladorBancario.Domain.Entities;
 
 public class Movimentacao
 {
-    public Guid ID { get; private set; }
-    public Guid ContaID { get; private set; }
+    public Guid Id { get; private set; }
+    public Guid ContaId { get; private set; }
     public decimal Valor { get; private set; }
     public TipoMovimentacao Tipo { get; private set; }
     public DateTime DataHora { get; private set; }
 
     private Movimentacao() { }
 
-    public Movimentacao(Guid contaID, decimal valor, TipoMovimentacao tipo)
+    public Movimentacao(Guid contaId, decimal valor, TipoMovimentacao tipo)
     {
-        ID = Guid.NewGuid();
-        ContaID = contaID;
+        Id = Guid.NewGuid();
+        ContaId = contaId;
         Valor = valor;
         Tipo = tipo;
         DataHora = DateTime.Now;

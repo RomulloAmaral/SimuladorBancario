@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\SimuladorBancario.API.props" />
-</Project>
