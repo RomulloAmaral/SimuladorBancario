@@ -16,7 +16,7 @@ public class ContaRepository : IContaRepository
 
     public async Task<Conta?> ObterPorIdAsync(Guid id)
     {
-        // Carrega também as movimentações para que ObterExtratoAsync funcione corretamente
+        
         return await _context.Contas
             .Include(c => c.Movimentacoes)
             .FirstOrDefaultAsync(c => c.Id == id);

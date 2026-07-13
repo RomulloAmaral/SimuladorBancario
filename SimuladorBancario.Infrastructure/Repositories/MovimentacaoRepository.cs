@@ -16,7 +16,7 @@ namespace SimuladorBancario.Infrastructure.Repositories
 
         public async Task CriarMovimentacao(Movimentacao movimentacao)
         {
-            // Apenas anexa ao DbSet; a persistência será feita pelo serviço em um único SaveChangesAsync.
+            
             await _context.Movimentacoes.AddAsync(movimentacao);
         }
 

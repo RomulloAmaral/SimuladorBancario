@@ -44,8 +44,7 @@ public class Conta
         }
 
         Saldo -= valor;
-        // Removida a criação automática de Movimentacao aqui.
-        // A movimentação será criada e associada pelo serviço de aplicação para evitar duplicidade.
+        
     }
 
     public void AdicionarMovimentacao(Movimentacao movimentacao) =>
