@@ -14,12 +14,13 @@ public class ContaRepository : IContaRepository
         _context = context;
     }
 
-   public async Task<Conta?> ObterPorIdAsync(Guid id)
-{
-    // Remove o Include para testar
-    return await _context.Contas
-        .FirstOrDefaultAsync(c => c.Id == id);
-}
+    public async Task<Conta?> ObterPorIdAsync(Guid id)
+    {
+        // Carrega também as movimentações para que ObterExtratoAsync funcione corretamente
+        return await _context.Contas
+            .Include(c => c.Movimentacoes)
+            .FirstOrDefaultAsync(c => c.Id == id);
+    }
 
     public async Task<Conta?> ObterPorClienteIdAsync(Guid clienteId)
     {

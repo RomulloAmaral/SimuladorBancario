@@ -45,8 +45,15 @@ public class ContaService : IContaService
         var conta = await _contaRepo.ObterPorIdAsync(contaId)
             ?? throw new KeyNotFoundException("Conta não encontrada.");
 
+        // 1. Aplica a regra de negócio (altera saldo e adiciona movimentação na lista)
         conta.Sacar(valor);
-        await _contaRepo.SalvarAsync();
+
+        // 2. Cria e salva a movimentação (isso já chama SaveChangesAsync internamente)
+        var movimentacao = new Movimentacao(contaId, valor, TipoMovimentacao.Saque);
+        await _movimentacaoRepo.CriarMovimentacao(movimentacao);
+
+        // 3. Salva a conta (atualiza o saldo)
+        await _contaRepo.SalvarAsync(); // AGORA O CONFLITO DESAPARECE
     }
 
     public async Task TransferirAsync(Guid contaOrigemId, Guid contaDestinoId, decimal valor)
@@ -60,9 +67,19 @@ public class ContaService : IContaService
         var destino = await _contaRepo.ObterPorIdAsync(contaDestinoId)
             ?? throw new KeyNotFoundException("Conta de destino não encontrada.");
 
+        // 1. Aplica as regras de negócio
         origem.Sacar(valor);
         destino.Depositar(valor);
-        await _contaRepo.SalvarAsync();
+
+        // 2. Cria e salva as movimentações
+        var movimentacaoOrigem = new Movimentacao(contaOrigemId, valor, TipoMovimentacao.TransferenciaEnviada);
+        await _movimentacaoRepo.CriarMovimentacao(movimentacaoOrigem);
+
+        var movimentacaoDestino = new Movimentacao(contaDestinoId, valor, TipoMovimentacao.TransferenciaRecebida);
+        await _movimentacaoRepo.CriarMovimentacao(movimentacaoDestino);
+
+        // 3. Salva as contas (atualiza os saldos)
+        await _contaRepo.SalvarAsync(); // AGORA O CONFLITO DESAPARECE
     }
 
     public async Task<decimal> ConsultarSaldoAsync(Guid contaId)
@@ -78,6 +95,6 @@ public class ContaService : IContaService
         var conta = await _contaRepo.ObterPorIdAsync(contaId)
             ?? throw new KeyNotFoundException("Conta não encontrada.");
 
-        return conta.Movimentacoes;
+        return conta.Movimentacoes.OrderByDescending(m => m.DataHora);
     }
 }

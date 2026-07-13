@@ -31,7 +31,6 @@ public class Conta
             throw new ArgumentException("O valor do depósito deve ser maior que zero.");
 
         Saldo += valor;
-       
     }
 
     public void Sacar(decimal valor)
@@ -45,8 +44,10 @@ public class Conta
         }
 
         Saldo -= valor;
-        Movimentacoes.Add(new Movimentacao(Id, valor, TipoMovimentacao.Saque));
+        // Removida a criação automática de Movimentacao aqui.
+        // A movimentação será criada e associada pelo serviço de aplicação para evitar duplicidade.
     }
+
     public void AdicionarMovimentacao(Movimentacao movimentacao) =>
         Movimentacoes.Add(movimentacao);
 }
